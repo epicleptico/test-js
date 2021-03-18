@@ -20,6 +20,7 @@
 import React from "react";
 import ComponentA from 'components/ComponentA';
 import ComponentB from 'components/ComponentB';
+import { useSelector } from 'react-redux'; // Missed that line
 
 interface IInitialState {
     id: string;
@@ -36,11 +37,17 @@ interface IData {
 
 const TestComponent = () => {
     const myReducer: IInitialState = useSelector((state: IRootState) => state.MyReducer);
+    const data: IData | undefined = getDataFromExternalSource(myReducer.id); // Shouldn't this be an async fn ?? 
 
-    
+    if (!data) {
+        return (
+            <>There was an error</>
+        );
+    }
+
+    return (
+        data.age >= 18 ? <ComponentB /> : <ComponentA />
+    );
 }
 
 export default TestComponent;
-
-
-

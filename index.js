@@ -12,6 +12,15 @@ const data = require("./data");
  */
 
  // Your code
+ function logPlayers() {
+    data.getPlayers().forEach((x, i) => {
+        const {name, lastname, position} = x;
+        console.log(`PLAYER ${i + 1}`);
+        console.log(`NAME: ${name}`);
+        console.log(`LASTNAME ${lastname}`);
+        console.log(`POSITION: ${position}`);
+    }); 
+ }
 
 
 
@@ -21,9 +30,9 @@ const data = require("./data");
  */
 
 // Your code
-
-
-
+function logPlayersNames() {
+    console.log([...data.getPlayers().map(({name}) => name).sort((a,b) => a.localeCompare(b))]);
+}
 
 
 /**
@@ -35,6 +44,11 @@ const data = require("./data");
  */
 
 // Your code
+function logAverageResultsForOneMatch() {
+
+    // I am not sure if this is the expected, i am going to sum all the scoring chances. Maybe is incorrect, but is confusing.
+    console.log(`Goals per match: ${data.getPlayers().map(({scoringChance}) => scoringChance).reduce((acc, x) => acc + x)}`);
+}
 
 
 
@@ -44,3 +58,7 @@ const data = require("./data");
  */
 
 // Your code
+function logPlayerPositionByName(playerName) {
+    const playerPosition = data.getPlayers().filter(({name}) => name == playerName).map(({position}) => position).shift();
+    console.log(!!playerPosition ? `Player position of ${playerName} is '${playerPosition}'` : `There is no player with the name ${playerName}`);
+}
