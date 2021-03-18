@@ -45,9 +45,10 @@ function logPlayersNames() {
 
 // Your code
 function logAverageResultsForOneMatch() {
-
-    // I am not sure if this is the expected, i am going to sum all the scoring chances. Maybe is incorrect, but is confusing.
-    console.log(`Goals per match: ${data.getPlayers().map(({scoringChance}) => scoringChance).reduce((acc, x) => acc + x)}`);
+    // If the scoringChanv
+    console.log(`Goals per match: ${data.getPlayers()
+        .map(({scoringChance}) => scoringChance / 100) // If the scoringChance is per 100 games, we need to get the chance for 1 match.
+        .reduce((acc, x) => acc + x)}`);
 }
 
 
