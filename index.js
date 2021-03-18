@@ -62,3 +62,25 @@ function logPlayerPositionByName(playerName) {
     const playerPosition = data.getPlayers().filter(({name}) => name == playerName).map(({position}) => position).shift();
     console.log(!!playerPosition ? `Player position of ${playerName} is '${playerPosition}'` : `There is no player with the name ${playerName}`);
 }
+
+/* ------------------------------------------------------------------ */
+//                  TEST OUTPUT LOGIC
+/* ------------------------------------------------------------------ */
+
+let testNumber = 1;
+
+const logTest = (testFn) => {
+    console.log(`\n----------------\nTest ${testNumber++}\n----------------\n\n`);
+    testFn();
+    console.log(`\n`);
+}
+
+
+logTest(logPlayers);
+logTest(logPlayersNames);
+logTest(logAverageResultsForOneMatch);
+logTest(() => {
+    logPlayerPositionByName(`Joe`);
+    logPlayerPositionByName(`Timo`);
+    logPlayerPositionByName(`Bernd`);
+})
